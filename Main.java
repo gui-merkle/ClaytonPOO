@@ -1,20 +1,21 @@
-package imposto;
+package bar;
 
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            double salarioAnual = Double.parseDouble(JOptionPane.showInputDialog("Informe o salário anual:"));
-            double rendaServicos = Double.parseDouble(JOptionPane.showInputDialog("Informe a renda com prestação de serviços:"));
-            double ganhoCapital = Double.parseDouble(JOptionPane.showInputDialog("Informe o ganho de capital:"));
-            double gastosMedicos = Double.parseDouble(JOptionPane.showInputDialog("Informe os gastos médicos anuais:"));
-            double gastosEducacionais = Double.parseDouble(JOptionPane.showInputDialog("Informe os gastos educacionais anuais:"));
+            char sexo = JOptionPane.showInputDialog("Informe o sexo (F ou M):").charAt(0);
+            int quantidadeCervejas = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de cervejas:"));
+            int quantidadeRefrigerantes = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de refrigerantes:"));
+            int quantidadeEspetinhos = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de espetinhos:"));
 
-            Pessoa pessoa = new Pessoa(salarioAnual, rendaServicos, ganhoCapital, gastosMedicos, gastosEducacionais);
-            RelatorioImposto.gerarRelatorio(pessoa);
+            Cliente cliente = new Cliente(sexo, quantidadeCervejas, quantidadeRefrigerantes, quantidadeEspetinhos);
+            RelatorioConta.gerarRelatorio(cliente);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Por favor, insira valores numéricos válidos.");
+        } catch (StringIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Por favor, insira um caractere válido para o sexo.");
         }
     }
 }
